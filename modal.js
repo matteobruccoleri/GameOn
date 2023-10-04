@@ -67,6 +67,8 @@ const last = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const input = document.getElementsByTagName("input");
+const quantity = document.getElementById("quantity");
+const conditions = document.getElementById("checkbox1");
 
 
 // Regex
@@ -84,6 +86,17 @@ errorFirst.classList.add("error");
 let errorLast = document.createElement("p");
 errorLast.classList.add("error");
 
+let errorEmail = document.createElement("p");
+errorEmail.classList.add("error");
+
+let errorBirthdate = document.createElement("p");
+errorBirthdate.classList.add("error");
+
+let errorQuantity = document.createElement("p");
+errorQuantity.classList.add("error");
+
+let errorConditions = document.createElement("p");
+errorConditions.classList.add("error");
 
 // valide
 //let valide = document.createElement("p");
@@ -209,7 +222,27 @@ form.addEventListener("submit", (event) => {
     
     errorLast.innerHTML = "Ce champ ne doit pas être vide.";
   }
- 
+  if(!last.value) {
+    last.parentElement.appendChild(errorLast);  
+    errorLast.innerHTML = "Ce champ ne doit pas être vide.";
+  }
+  if(!email.value) {
+    email.parentElement.appendChild(errorEmail);
+    errorEmail.innerHTML = "Ce champ ne doit pas être vide.";
+  }
+  if(!birthdate.value) {
+    birthdate.parentElement.appendChild(errorBirthdate);
+    errorBirthdate.innerHTML = "Ce champ ne doit pas être vide.";
+  }
+  if(!quantity.value) {
+    quantity.parentElement.appendChild(errorQuantity);
+    errorQuantity.innerHTML = "Ce champ ne doit pas être vide.";
+  }
+  if(!conditions.checked) {
+    conditions.parentElement.appendChild(errorConditions);
+    errorConditions.innerHTML = "Veulliez accepter les conditions d'utilisation";
+  }
+
   else { 
     console.log(isValid);
     // Les conditions ne sont pas remplies, affichez un message d'erreur
