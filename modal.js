@@ -7,12 +7,16 @@ const navbarClose = document.querySelector(".navbar-close");
 
 // Ajouter la class open à main-navbar
 function openNavbar() {
+
   navbar.classList.add("open");
+
 }
 
 // Enlever la class open à main-navbar 
 function removeNavbar() {
-  navbar.classList.remove("open"); 
+
+  navbar.classList.remove("open");
+  
 }
 
 // Cliquer sur l'icon pour ouvrir la navbar de la version tablette ou mobile
@@ -29,7 +33,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector(".close");
 const modalBgContent = document.querySelector(".content");
-
+ 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -55,15 +59,15 @@ function closeModal() {
 }
 
 // Formulaire
-const form = document.getElementById("form");
 
 // Input du formulaire
+const form = document.getElementById("form");
 const first = document.getElementById("first");
 const last = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
-const quantity = document.getElementById("quantity");
-const conditions = document.getElementById("checkbox1")
+const input = document.getElementsByTagName("input");
+
 
 // Regex
 const regexName = /^([A-Za-z|\s]{2,15})?([-]{0,1})?([A-Za-z|\s]{2,15})$/;
@@ -80,17 +84,6 @@ errorFirst.classList.add("error");
 let errorLast = document.createElement("p");
 errorLast.classList.add("error");
 
-let errorEmail = document.createElement("p");
-errorEmail.classList.add("error");
-
-let errorBirthdate = document.createElement("p");
-errorBirthdate.classList.add("error");
-
-let errorQuantity = document.createElement("p");
-errorQuantity.classList.add("error");
-
-let errorConditions = document.createElement("p");
-errorConditions.classList.add("error");
 
 // valide
 //let valide = document.createElement("p");
@@ -100,7 +93,7 @@ errorConditions.classList.add("error");
 let isValid = true;
 
 //Ecouter la modification de prénom
-first.addEventListener('change', (event) => {
+const valideFirst = first.addEventListener('change', (event) => {
   event.preventDefault();
 
   if (first.value.length < 2 || !first.value.match(regexName)) {
@@ -131,7 +124,7 @@ first.addEventListener('change', (event) => {
 last.addEventListener('change', (event) => {
   event.preventDefault();
 
-  if(last.value.length < 2 || !last.value) {
+  if(last.value.length < 2) {
     last.parentElement.appendChild(errorLast);
     errorLast.style.display = "block";
     errorLast.innerHTML = "Ce champ ne doit contenir minimum 2 caractères et ne pas contenir de caractères spéciaux";
@@ -150,6 +143,7 @@ last.addEventListener('change', (event) => {
   }
 
 });
+
 email.addEventListener('change', (event) => {
   event.preventDefault();
 
@@ -167,25 +161,24 @@ email.addEventListener('change', (event) => {
   }
 
 });
-/*
+
 quantity.addEventListener('change', (event) => {
   event.preventDefault();
 
-  if(quantity.value == "") {
-    quantity.parentElement.appendChild(errorQuantity);
-    errorQuantity.style.display = "block";
-    quantity.style.border ="2px solid #e54858"
-    errorQuantity.innerHTML = "Le champ ne doit pas être vide.";
+  if(quantity.value.length == "") {
+    quantity.parentElement.appendChild(quantityLast);
+    quantityLast.style.display = "block";
+    last.style.border ="2px solid #e54858"
+    quantityLast.innerHTML = "Le champ ne doit pas être vide.";
     isValid = false;
   }
   else {
     quantity.style.border ="none"
-    errorQuantity.style.display = "none";
+    quantityLast.style.display = "none";
     isValid = true;
   }
 
 });
-*/
 
 form.addEventListener("submit", (event) => {
   // On empêche le comportement par défaut
@@ -208,39 +201,22 @@ form.addEventListener("submit", (event) => {
 
   if(!first.value) {
     first.parentElement.appendChild(errorFirst);
-    first.style.border="2px solid #e54858"
-    errorFirst.innerHTML = "Le champ ne doit pas être vide.";
+    
+    errorFirst.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!last.value) {
     last.parentElement.appendChild(errorLast);
-    last.style.border="2px solid #e54858"
-    errorLast.innerHTML = "Le champ ne doit pas être vide.";
+    
+    errorLast.innerHTML = "Ce champ ne doit pas être vide.";
   }
-  if(!email.value) {
-    email.parentElement.appendChild(errorEmail);
-    email.style.border="2px solid #e54858"
-    errorEmail.innerHTML = "Le champ ne doit pas être vide.";
-  }
-  if(!birthdate.value) {
-    birthdate.parentElement.appendChild(errorBirthdate);
-    birthdate.style.border="2px solid #e54858"
-    errorBirthdate.innerHTML = "Le champ ne doit pas être vide.";
-  }
-  if(!quantity.value) {
-    quantity.parentElement.appendChild(errorQuantity);
-    quantity.style.border="2px solid #e54858"
-    errorQuantity.innerHTML = "Le champ ne doit pas être vide.";
-  }
-  
-  if(!conditions.checked) {
-    conditions.parentElement.appendChild(errorQuantity);
-    errorConditions.innerHTML = "Veuillez accepter les conditions d'utilisation";
-  }
-
-
-  else {
+ 
+  else { 
     console.log(isValid);
     // Les conditions ne sont pas remplies, affichez un message d'erreur
     alert("Le formulaire contient des erreurs. Veuillez corriger les champs en rouge.");
-  }
+  } 
 });
+
+
+
+ 
