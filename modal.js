@@ -277,12 +277,6 @@ quantity.addEventListener('change', (event) => {
   quantity();
 });
 
-//Ecouter
-quantity.addEventListener('change', (event) => {
-  event.preventDefault();
-
-  
-});
 
 //
 locations.addEventListener('change', (event) => {
