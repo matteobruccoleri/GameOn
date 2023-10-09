@@ -154,8 +154,6 @@ function lastValid() {
   return true;
 };
 
-email.addEventListener('change', (event) => {
-  event.preventDefault();
 // Valider l'email
 function emailValid() {
   if(!email.value.match(regexEmail)) {
@@ -171,25 +169,6 @@ function emailValid() {
   }
   return true;
 }
-});
-
-quantity.addEventListener('change', (event) => {
-  event.preventDefault();
-
-  if(quantity.value.length == "") {
-    quantity.parentElement.appendChild(quantityLast);
-    quantityLast.style.display = "block";
-    last.style.border ="2px solid #e54858"
-    quantityLast.innerHTML = "Le champ ne doit pas être vide.";
-    isValid = false;
-  }
-  else {
-    quantity.style.border ="none"
-    quantityLast.style.display = "none";
-    isValid = true;
-  }
-});
-
 
 // Valider la date de naissance
 function birthdateValid() {
@@ -229,7 +208,7 @@ function birthdateValid() {
 }
 
 // Valider nombre de participation au tournoi GameOn
-function quantity() {
+function quantityValid() {
   if(!quantity.value.match(regexQuantity)) {
     quantity.parentElement.appendChild(errorQuantity);
     quantity.style.border="2px solid #e54858"
@@ -270,13 +249,6 @@ birthdate.addEventListener('change', (event) => {
   event.preventDefault();
   birthdateValid();
 });
-
-// Evenement nombre de participation au tournoi GameOn
-quantity.addEventListener('change', (event) => {
-  event.preventDefault();
-  quantity();
-});
-
 
 //
 locations.addEventListener('change', (event) => {
