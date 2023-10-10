@@ -117,13 +117,14 @@ errorConditions.classList.add("error");
 function firstValid() {
   if (first.value.length < 2) {
     first.parentElement.appendChild(errorFirst);
-    first.style.border ="2px solid #e54858"
+    first.style.border ="2px solid #e54858";
     errorFirst.style.display = "block";
     errorFirst.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
     return false;
   }
   else if(!first.value.match(regexName)) {
     first.parentElement.appendChild(errorFirst);
+    first.style.border ="2px solid #e54858";
     errorFirst.style.display = "block";
     errorFirst.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux";
     return false;
@@ -137,14 +138,16 @@ function firstValid() {
 
 // Valider le nom
 function lastValid() {
-  if(last.value.length < 2 || !last.value) {
+  if(last.value.length < 2) {
     last.parentElement.appendChild(errorLast);
+    last.style.border ="2.5px solid #e54858";
     errorLast.style.display = "block";
     errorLast.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
     return false;
   }
   else if(!last.value.match(regexName)) {
     last.parentElement.appendChild(errorLast);
+    last.style.border ="2.5px solid #e54858";
     errorLast.style.display = "block";
     errorLast.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux.";
     return false;
@@ -160,8 +163,8 @@ function lastValid() {
 function emailValid() {
   if(!email.value.match(regexEmail)) {
     email.parentElement.appendChild(errorEmail);
+    email.style.border ="2.5px solid #e54858"
     errorEmail.style.display = "block";
-    email.style.border ="2px solid #e54858"
     errorEmail.innerHTML = "Veuillez renseigner une adresse email valide";
     return false;
   }
@@ -184,16 +187,15 @@ function birthdateValid() {
   const difference_currentDate_birthdate = currentDate - birthdateValue;
 
   // Convertissez la différence en années                    // nombre de millisecondes dans une année
-  const differenceInYears = difference_currentDate_birthdate / (1000 * 60 * 60 * 24 * 365.25); 
+  const differenceInYears = difference_currentDate_birthdate / (1000 * 60 * 60 * 24 * 365); 
 
   // 4. Vérifiez si l'utilisateur a plus de 18 ans
   if (differenceInYears < 18) {
     birthdate.parentElement.appendChild(errorBirthdate);
-      errorBirthdate.style.display = "block";
-      birthdate.style.border ="2px solid #e54858"
-      errorBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
-      console.log(differenceInYears);
-      return false;
+    birthdate.style.border ="2px solid #e54858"
+    errorBirthdate.style.display = "block";
+    errorBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
+    return false;
   }
   else if (differenceInYears > 130) {
     birthdate.parentElement.appendChild(errorBirthdate)
@@ -305,44 +307,27 @@ form.addEventListener("submit", (event) => {
 
   if(!first.value) {
     first.parentElement.appendChild(errorFirst);
+    first.style.border="2px solid #e54858"
     errorFirst.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!last.value) {
     last.parentElement.appendChild(errorLast);
-    
-    errorLast.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!last.value) {
-    last.parentElement.appendChild(errorLast);  
-    errorLast.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!email.value) {
-    email.parentElement.appendChild(errorEmail);
-    errorEmail.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!birthdate.value) {
-    birthdate.parentElement.appendChild(errorBirthdate);
-    errorBirthdate.innerHTML = "Ce champ ne doit pas être vide.";
-    first.style.border="2px solid #e54858"
-    errorFirst.innerHTML = "Veuillez renseigner votre prénom.";
-  }
-  if(!last.value) {
-    last.parentElement.appendChild(errorLast);
     last.style.border="2px solid #e54858"
-    errorLast.innerHTML = "Veuillez renseigner votre nom.";
+    errorLast.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!email.value) {
     email.parentElement.appendChild(errorEmail);
     email.style.border="2px solid #e54858"
-    errorEmail.innerHTML = "Veuillez renseigner une adresse mail.";
+    errorEmail.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!birthdate.value) {
     birthdate.parentElement.appendChild(errorBirthdate);
     birthdate.style.border="2px solid #e54858"
-    errorBirthdate.innerHTML = "Veuillez renseigner votre date de naissance.";
+    errorBirthdate.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!quantity.value.match(regexQuantity)) {
     quantity.parentElement.appendChild(errorQuantity);
+    quantity.style.border="2px solid #e54858"
     errorQuantity.innerHTML = "Veuillez un nombre entre 0 et 99";
   }
   if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {
