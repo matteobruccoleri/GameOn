@@ -33,6 +33,8 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector(".close");
 const modalBgContent = document.querySelector(".content");
+
+const confirmaValidation = document.querySelector(".message-validation");
  
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -223,37 +225,8 @@ function quantityValid() {
   return true;
 }
 
-//////////////////////////////////////////
-// Evenement des inputs du formulaires //
-
-// Evenement du prénom
-first.addEventListener('change', (event) => {
-  event.preventDefault();
-  firstValid();
-});
-
-// Evenement du nom
-last.addEventListener('change', (event) => {
-  event.preventDefault();
-  lastValid();
-});
-
-// Evenement de l'email
-email.addEventListener('change', (event) => {
-  event.preventDefault();
-  emailValid();
-});
-
-// Evenement de la date de naissance
-birthdate.addEventListener('change', (event) => {
-  event.preventDefault();
-  birthdateValid();
-});
-
-//
-locations.addEventListener('change', (event) => {
-  event.preventDefault();
-
+// Valider choix localisation tournoi
+function locationValid() {
   if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {
     location6.parentElement.appendChild(errorLocations);
     errorLocations.style.display= "block";
@@ -264,13 +237,10 @@ locations.addEventListener('change', (event) => {
     errorLocations.style.display = "none";
   }
   return true;
-});
-
-
-//
-conditions.addEventListener('change', (event) => {
-  event.preventDefault();
-
+};
+ 
+// Valider les conditions d'utilisation
+function conditionsValid() {
   if(!conditions.checked) {
     document.getElementById("conditions").parentElement.appendChild(errorConditions);
     errorConditions.innerHTML = "Veuillez accepter les conditions d'utilisation.";
@@ -280,10 +250,55 @@ conditions.addEventListener('change', (event) => {
     errorConditions.style.display= "none";
   }
   return true;
+};
+
+//////////////////////////////////////////
+// Evenement des inputs du formulaires //
+
+// Evenement input prénom
+first.addEventListener('change', (event) => {
+  event.preventDefault();
+  firstValid();
+});
+
+// Evenement input nom
+last.addEventListener('change', (event) => {
+  event.preventDefault();
+  lastValid();
+});
+
+// Evenement input email
+email.addEventListener('change', (event) => {
+  event.preventDefault();
+  emailValid();
+});
+
+// Evenement input birthdate
+birthdate.addEventListener('change', (event) => {
+  event.preventDefault();
+  birthdateValid();
+});
+
+// Evenement input quantity
+quantity.addEventListener('change', (event) => {
+  event.preventDefault();
+  quantityValid();
+});
+
+// Evenement input location
+locations.addEventListener('change', (event) => {
+  event.preventDefault();
+  locationValid();
+});
+
+// Evenement input conditions
+conditions.addEventListener('change', (event) => {
+  event.preventDefault();
+  conditionsValid()
 });
 
 
-//Ecouter
+// Evenement au submit du formulaire
 form.addEventListener("submit", (event) => {
   // On empêche le comportement par défaut
   event.preventDefault();
@@ -328,8 +343,12 @@ form.addEventListener("submit", (event) => {
   }
   if(!quantity.value.match(regexQuantity)) {
     quantity.parentElement.appendChild(errorQuantity);
-    errorQuantity.innerHTML = "Ce champ ne doit pas être vide.";
-
+    errorQuantity.innerHTML = "Veuillez un nombre entre 0 et 99";
+  }
+  if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {
+    location6.parentElement.appendChild(errorLocations);
+    errorLocations.style.display= "block";
+    errorLocations.innerHTML = "Veuillez renseigner un tournoi auquel participer.";
   }
   if(!conditions.checked) {
     conditions.parentElement.appendChild(errorConditions);
@@ -337,14 +356,11 @@ form.addEventListener("submit", (event) => {
   }
 
   // If all conditions are valid 
-  if (firstValid() && lastValid()) {
+  if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
    //formWrapper.style.display = 'none';
-   // modalSuccess.style.display = 'flex';
+    confirmaValidation.style.display = 'block';
+    form.style.display ="none";
     form.reset();
   } 
-  else {
 
-    // Les conditions ne sont pas remplies, affichez un message d'erreur
-    alert("Le formulaire contient des erreurs. Veuillez corriger les champs en rouge.");
-  } 
 });
