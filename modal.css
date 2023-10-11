@@ -172,6 +172,7 @@ main {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
+  min-height: 550Px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -179,12 +180,12 @@ main {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
 }
 
 .closed {
   animation: 0.8s modalclose;
   animation-fill-mode: both;
+  display: block;
 }
 .modal-body {
   padding: 15px 8%;
@@ -590,9 +591,15 @@ footer {
 
 .message-validation {
   display: none;
+  padding: 25px;
   position: absolute;
   z-index: 999;
-  height: 100%;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #232323;
+  color: #FFF;
+  border-radius: 15px;
+  width: 100%;
+  text-align: center;
 }

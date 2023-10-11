@@ -45,7 +45,10 @@ closeForm.addEventListener("click", closeModal);
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  form.style.display ="block";
   modalBgContent.classList.remove("closed");
+  confirmaValidation.style.display = 'none';
+
 }
 
 // close modal form
@@ -192,7 +195,6 @@ function birthdateValid() {
       errorBirthdate.style.display = "block";
       birthdate.style.border ="2px solid #e54858"
       errorBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
-      console.log(differenceInYears);
       return false;
   }
   else if (differenceInYears > 130) {
@@ -308,12 +310,7 @@ form.addEventListener("submit", (event) => {
     errorFirst.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!last.value) {
-    last.parentElement.appendChild(errorLast);
-    
-    errorLast.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!last.value) {
-    last.parentElement.appendChild(errorLast);  
+    last.parentElement.appendChild(errorLast);   
     errorLast.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!email.value) {
@@ -322,32 +319,15 @@ form.addEventListener("submit", (event) => {
   }
   if(!birthdate.value) {
     birthdate.parentElement.appendChild(errorBirthdate);
-    errorBirthdate.innerHTML = "Ce champ ne doit pas être vide.";
-    first.style.border="2px solid #e54858"
-    errorFirst.innerHTML = "Veuillez renseigner votre prénom.";
-  }
-  if(!last.value) {
-    last.parentElement.appendChild(errorLast);
-    last.style.border="2px solid #e54858"
-    errorLast.innerHTML = "Veuillez renseigner votre nom.";
-  }
-  if(!email.value) {
-    email.parentElement.appendChild(errorEmail);
-    email.style.border="2px solid #e54858"
-    errorEmail.innerHTML = "Veuillez renseigner une adresse mail.";
-  }
-  if(!birthdate.value) {
-    birthdate.parentElement.appendChild(errorBirthdate);
     birthdate.style.border="2px solid #e54858"
-    errorBirthdate.innerHTML = "Veuillez renseigner votre date de naissance.";
+    errorBirthdate.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!quantity.value.match(regexQuantity)) {
     quantity.parentElement.appendChild(errorQuantity);
-    errorQuantity.innerHTML = "Veuillez un nombre entre 0 et 99";
+    errorQuantity.innerHTML = "Veuillez renseigner un nombre entre 0 et 99";
   }
   if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {
     location6.parentElement.appendChild(errorLocations);
-    errorLocations.style.display= "block";
     errorLocations.innerHTML = "Veuillez renseigner un tournoi auquel participer.";
   }
   if(!conditions.checked) {
@@ -355,9 +335,8 @@ form.addEventListener("submit", (event) => {
     errorConditions.innerHTML = "Veulliez accepter les conditions d'utilisation";
   }
 
-  // If all conditions are valid 
+  // Si tous les champs du formulaires sont valide
   if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
-   //formWrapper.style.display = 'none';
     confirmaValidation.style.display = 'block';
     form.style.display ="none";
     form.reset();
