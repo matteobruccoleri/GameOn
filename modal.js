@@ -7,16 +7,12 @@ const navbarClose = document.querySelector(".navbar-close");
 
 // Ajouter la class open à main-navbar
 function openNavbar() {
-
   navbar.classList.add("open");
-
 }
 
 // Enlever la class open à main-navbar 
 function removeNavbar() {
-
-  navbar.classList.remove("open");
-  
+  navbar.classList.remove("open"); 
 }
 
 // Cliquer sur l'icon pour ouvrir la navbar de la version tablette ou mobile
@@ -33,8 +29,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector(".close");
 const modalBgContent = document.querySelector(".content");
-
-const confirmaValidation = document.querySelector(".message-validation");
+const confirmValidation = document.querySelector(".message-validation");
  
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -48,7 +43,6 @@ function launchModal() {
   form.style.display ="block";
   modalBgContent.classList.remove("closed");
   confirmaValidation.style.display = 'none';
-
 }
 
 // close modal form
@@ -114,7 +108,7 @@ let errorConditions = document.createElement("p");
 errorConditions.classList.add("error");
 
 ////////////////////////////////////////////////////////
-// Function de validation des inputs des formulaires //
+// Fonction de validation des inputs du formulaires //
 
 // Valider le prénom
 function firstValid() {
@@ -315,11 +309,6 @@ form.addEventListener("submit", (event) => {
     errorFirst.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!last.value) {
-    last.parentElement.appendChild(errorLast);
-    
-    errorLast.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!last.value) {
     last.parentElement.appendChild(errorLast);  
     errorLast.innerHTML = "Ce champ ne doit pas être vide.";
   }
@@ -348,7 +337,7 @@ form.addEventListener("submit", (event) => {
 
   // Si tous les champs du formulaires sont valide
   if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
-    confirmaValidation.style.display = 'block';
+    confirmValidation.style.display = 'block';
     form.style.display ="none";
     form.reset();
   } 
