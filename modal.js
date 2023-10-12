@@ -42,7 +42,7 @@ function launchModal() {
   modalbg.style.display = "block";
   form.style.display ="block";
   modalBgContent.classList.remove("closed");
-  confirmaValidation.style.display = 'none';
+  confirmValidation.style.display = 'none';
 }
 
 // close modal form
