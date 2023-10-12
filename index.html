@@ -56,39 +56,40 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
+            <!-- form -->
             <form id="form" name="reserve" action="index.html" method="get">
-              <!-- FormData -->
+              <!-- first -->
               <div class="formData">
                 <label>Prénom</label><br>
                 <input class="text-control"  type="text" id="first" name="first"/><br>
               </div>
-              <!-- FormData -->
+              <!-- last -->
               <div class="formData">
                 <label>Nom</label>
                 <br>
                 <input class="text-control" type="text" id="last" name="last"/>
                 <br>
               </div>
-              <!-- FormData --> 
+              <!-- email --> 
               <div
                 class="formData">
                 <label>E-mail</label><br>
                 <input class="text-control" type="email" id="email" name="email"/>
                 <br>
               </div>
-              <!-- FormData -->
+              <!-- birthdate -->
               <div class="formData">
                 <label>Date de naissance</label><br>
                 <input class="text-control" type="date" id="birthdate" name="birthdate"/>
                   <br>
               </div>
-              <!-- FormData -->
+              <!-- quantity -->
               <div class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label>
                 <br>
                 <input type="number" class="text-control" id="quantity" name="quantity">
               </div>
-              <!-- FormData -->
+              <!-- location -->
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div class="formData" id="locations">
                 <input class="checkbox-input"type="radio" id="location1" name="location" value="New York" />
@@ -121,7 +122,7 @@
                   Portland
                 </label>
               </div>
-              <!-- FormData -->
+              <!-- conditions -->
               <div class="formData">
                 <input class="checkbox-input" type="checkbox" id="checkbox1"/>
                 <label class="checkbox2-label" for="checkbox1" id="conditions" required>
