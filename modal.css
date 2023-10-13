@@ -8,8 +8,8 @@
   margin: 0;
   padding: 0;
 }
-/* Landing Page */
 
+/* Landing Page */
 body {
   margin: 0;
   display: flex;
@@ -53,30 +53,36 @@ p {
 }
 .topnav a {
   display: block;
-  color: #000000;
+  color: #232323;
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 20px;
-  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  font-family: DM Sans, sans-serif;
+  font-weight: 600;
 }
 
 .topnav a:hover {
-  background-color: #ff0000;
+  background-color: #FE142F;
   color: #ffffff;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 .topnav a.active {
-  background-color: #ff0000;
+  background-color: #FE142F;
   color: #ffffff;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 .topnav .icon {
   display: none;
 }
-
+.fa .fa-bars {
+  vertical-align: middle;
+}
+.fa-bars::before {
+  font-size: 26px;
+}
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -96,7 +102,7 @@ main {
   padding: 2em;
   color: #fff;
   padding: 0.75rem 2.5rem;
-  border-radius: 1rem;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -105,7 +111,10 @@ main {
 }
 
 /* Modal form */
-
+.modal-body {
+  padding: 15px 8%;
+  margin: 15px auto;
+}
 .button {
   background: #fe142f;
   margin-top: 0.5em;
@@ -150,14 +159,38 @@ main {
   color: #fff;
 }
 
+.open {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  animation: modalopen;
+}
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
 .closed {
   animation: 0.8s modalclose;
   animation-fill-mode: both;
   display: block;
 }
-.modal-body {
-  padding: 15px 8%;
-  margin: 15px auto;
+
+@keyframes modalclose {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
 }
 
 label {
@@ -199,12 +232,7 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -298,7 +326,7 @@ input[data-error]::after {
 .btn-signup {
   background: #fe142f;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto 0;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;
@@ -395,6 +423,7 @@ input[data-error]::after {
   text-align: left;
   min-width: 424px;
 }
+/*
 .hero-content::after {
   content: "";
   width: 100%;
@@ -404,6 +433,7 @@ input[data-error]::after {
   right: -80px;
   top: 0;
 }
+*/
 .hero-content > * {
   position: relative;
   z-index: 1;
@@ -414,9 +444,8 @@ input[data-error]::after {
   white-space: nowrap;
 }
 .hero-text {
-  width: 146%;
   font-weight: normal;
-  margin-top: 57px;
+  margin-top: 50px;
   padding: 0;
 }
 .btn-signup {
@@ -435,6 +464,7 @@ input[data-error]::after {
   height: 100%;
   display: block;
   padding: 0;
+  object-fit: cover;
 }
 .copyrights {
   color: #fe142f;
@@ -449,7 +479,7 @@ input[data-error]::after {
 
 .error {
   font-size: 16px;
-  color: #ff182f;
+  color: #FF4E60;
   text-align: left;
 }
 .valide {
@@ -461,44 +491,6 @@ footer {
   padding-left: 2vw;
   padding-right: 2vw;
   margin: 0 20px;
-}
-@media screen and (max-width: 800px) {
-  .hero-section {
-    display: block;
-    box-shadow: unset;
-  }
-  .hero-content {
-    background: #fff;
-    color: #000;
-    padding: 20px;
-  }
-  .hero-content::after {
-    content: unset;
-  }
-  .hero-content .btn-signup {
-    display: none;
-  }
-  .hero-headline {
-    font-size: 4.5rem;
-    white-space: normal;
-  }
-  .hero-text {
-    width: unset;
-    font-size: 1.5rem;
-  }
-  .hero-img img {
-    border-radius: 10px;
-    margin-top: 40px;
-  }
-  .hero-section > .btn-signup {
-    display: block;
-    margin: 32px auto 10px;
-    padding: 12px 35px;
-  }
-  .copyrights {
-    margin-top: 50px;
-    text-align: center;
-  }
 }
 
 .message-validation {
@@ -515,8 +507,74 @@ footer {
   width: 100%;
   text-align: center;
 }
+.message-validation p {
+  font-weight: 400;
+  font-size: 28px;
+}
+.message-validation_close {
+  background: #fe142f;
+  display: none;
+  margin-bottom: 20px;
+  padding: 2em;
+  color: #fff;
+  padding: 0.75rem 2.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  justify-content: center;
+  font-weight: normal;
+  width: 235px;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  text-align: center;
+  transform: translateX(-50%);
+}
 
 /********** Responsive **********/
+@media screen and (max-width: 800px) {
+  .topnav a {
+    font-size: 16px;
+  }
+  .hero-section {
+    display: block;
+    box-shadow: unset;
+  }
+  .hero-content {
+    background: #fff;
+    color: #000;
+    padding: 0;
+    min-width: inherit;
+    width: 100%;
+  }
+  .hero-content::after {
+    content: unset;
+  }
+  .hero-content .btn-signup {
+    display: none;
+  }
+  .hero-headline {
+    font-size: 56px;
+    white-space: normal;
+  }
+  .hero-text {
+    font-size: 18px;
+  }
+  .hero-img img {
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .hero-section > .btn-signup {
+    display: block;
+    margin: 32px auto 10px;
+    padding: 12px 35px;
+  }
+  .copyrights {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .topnav .icon {
     display: block;
@@ -536,40 +594,21 @@ footer {
   .navbar-close  {
     display: block;
   }
-}
-.open {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  animation: modalopen;
-}
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes modalclose {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-150px);
+  .content {
+    height: 100%;
   }
 }
 
  @media screen and (max-width: 540px) {
-
+  .header-logo img {
+    height: 30px;
+  }
   .hero-headline {
-    font-size: 2rem;
+    font-size: 11vw;
+    margin-top: 20px;
+  }
+  .hero-text {
+    font-size: 16px;
   }
 } 
 
@@ -609,3 +648,9 @@ footer {
   }
 } 
 */
+/* 
+input[data-error]::after {
+    content: attr(data-error);
+    font-size: 0.4em;
+    color: red;
+} */

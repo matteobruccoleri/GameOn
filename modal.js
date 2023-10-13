@@ -30,12 +30,14 @@ const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector(".close");
 const modalBgContent = document.querySelector(".content");
 const confirmValidation = document.querySelector(".message-validation");
- 
+const confirmValidationBtnClose = document.querySelector(".message-validation_close");
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // close modal event
 closeForm.addEventListener("click", closeModal);
+confirmValidationBtnClose.addEventListener("click", closeModal);
 
 // launch modal form
 function launchModal() {
@@ -43,6 +45,7 @@ function launchModal() {
   form.style.display ="block";
   modalBgContent.classList.remove("closed");
   confirmValidation.style.display = 'none';
+  confirmValidationBtnClose.style.display = 'none';
 }
 
 // close modal form
@@ -114,14 +117,14 @@ errorConditions.classList.add("error");
 function firstValid() {
   if (first.value.length < 2) {
     first.parentElement.appendChild(errorFirst);
-    first.style.border ="2px solid #e54858";
+    first.style.border ="2px solid #FF4E60";
     errorFirst.style.display = "block";
     errorFirst.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
     return false;
   }
   else if(!first.value.match(regexName)) {
     first.parentElement.appendChild(errorFirst);
-    first.style.border ="2px solid #e54858";
+    first.style.border ="2px solid #FF4E60";
     errorFirst.style.display = "block";
     errorFirst.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux";
     return false;
@@ -137,14 +140,14 @@ function firstValid() {
 function lastValid() {
   if(last.value.length < 2) {
     last.parentElement.appendChild(errorLast);
-    last.style.border ="2.5px solid #e54858";
+    last.style.border ="2px solid #FF4E60";
     errorLast.style.display = "block";
     errorLast.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
     return false;
   }
   else if(!last.value.match(regexName)) {
     last.parentElement.appendChild(errorLast);
-    last.style.border ="2.5px solid #e54858";
+    last.style.border ="2px solid #FF4E60";
     errorLast.style.display = "block";
     errorLast.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux.";
     return false;
@@ -160,7 +163,7 @@ function lastValid() {
 function emailValid() {
   if(!email.value.match(regexEmail)) {
     email.parentElement.appendChild(errorEmail);
-    email.style.border ="2.5px solid #e54858"
+    email.style.border ="2px solid #FF4E60"
     errorEmail.style.display = "block";
     errorEmail.innerHTML = "Veuillez renseigner une adresse email valide";
     return false;
@@ -190,14 +193,14 @@ function birthdateValid() {
   if (differenceInYears < 18) {
     birthdate.parentElement.appendChild(errorBirthdate);
       errorBirthdate.style.display = "block";
-      birthdate.style.border ="2px solid #e54858"
+      birthdate.style.border ="2px solid #FF4E60"
       errorBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
       console.log(differenceInYears);
       return false;
   }
   else if (differenceInYears > 130) {
     birthdate.parentElement.appendChild(errorBirthdate)
-    birthdate.style.border ="2px solid #e54858"
+    birthdate.style.border ="2px solid #FF4E60"
     errorBirthdate.style.display = "block";
     errorBirthdate.innerHTML = "Veullez renseigner une date de naissance valide";
     return false;
@@ -213,7 +216,7 @@ function birthdateValid() {
 function quantityValid() {
   if(!quantity.value.match(regexQuantity)) {
     quantity.parentElement.appendChild(errorQuantity);
-    quantity.style.border="2px solid #e54858"
+    quantity.style.border="2px solid #FF4E60"
     errorQuantity.style.display = "block";
     errorQuantity.innerHTML = "Veuillez renseigner un nombre entre 0 et 99.";
     return false;
@@ -305,7 +308,7 @@ form.addEventListener("submit", (event) => {
 
   if(!first.value) {
     first.parentElement.appendChild(errorFirst);
-    first.style.border="2px solid #e54858"
+    first.style.border="2px solid #FF4E60"
     errorFirst.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!last.value) {
@@ -314,12 +317,12 @@ form.addEventListener("submit", (event) => {
   }
   if(!email.value) {
     email.parentElement.appendChild(errorEmail);
-    email.style.border="2px solid #e54858"
+    email.style.border="2px solid #FF4E60"
     errorEmail.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!birthdate.value) {
     birthdate.parentElement.appendChild(errorBirthdate);
-    birthdate.style.border="2px solid #e54858"
+    birthdate.style.border="2px solid #FF4E60"
     errorBirthdate.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!quantity.value.match(regexQuantity)) {
@@ -338,6 +341,7 @@ form.addEventListener("submit", (event) => {
   // Si tous les champs du formulaires sont valide
   if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
     confirmValidation.style.display = 'block';
+    confirmValidationBtnClose.style.display ='block';
     form.style.display ="none";
     form.reset();
   } 
