@@ -191,7 +191,7 @@ main {
     opacity: 0;
     transform: translateY(-150px);
   }
-}
+} 
 
 label {
   font-family: var(--font-default);
