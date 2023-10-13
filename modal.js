@@ -31,6 +31,7 @@ const closeForm = document.querySelector(".close");
 const modalBgContent = document.querySelector(".content");
 const confirmValidation = document.querySelector(".message-validation");
 const confirmValidationBtnClose = document.querySelector(".message-validation_close");
+const error = document.querySelectorAll(".error");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -161,11 +162,18 @@ function lastValid() {
 
 // Valider l'email
 function emailValid() {
+  if(!email.value) {
+    email.parentElement.appendChild(errorEmail);
+    email.style.border ="2px solid #FF4E60"
+    errorEmail.style.display = "block";
+    errorEmail.innerHTML = "Veuillez renseigner une adresse email.";
+    return false;
+  }
   if(!email.value.match(regexEmail)) {
     email.parentElement.appendChild(errorEmail);
     email.style.border ="2px solid #FF4E60"
     errorEmail.style.display = "block";
-    errorEmail.innerHTML = "Veuillez renseigner une adresse email valide";
+    errorEmail.innerHTML = "Veuillez renseigner une adresse email valide.";
     return false;
   }
   else {
@@ -192,17 +200,23 @@ function birthdateValid() {
   // 4. Vérifiez si l'utilisateur a plus de 18 ans
   if (differenceInYears < 18) {
     birthdate.parentElement.appendChild(errorBirthdate);
-      errorBirthdate.style.display = "block";
-      birthdate.style.border ="2px solid #FF4E60"
-      errorBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
-      console.log(differenceInYears);
-      return false;
+    birthdate.style.border ="2px solid #FF4E60"
+    errorBirthdate.style.display = "block";
+    errorBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
+    return false;
   }
   else if (differenceInYears > 130) {
     birthdate.parentElement.appendChild(errorBirthdate)
     birthdate.style.border ="2px solid #FF4E60"
     errorBirthdate.style.display = "block";
-    errorBirthdate.innerHTML = "Veullez renseigner une date de naissance valide";
+    errorBirthdate.innerHTML = "Veullez renseigner une date de naissance valide.";
+    return false;
+  }
+  else if (!differenceInYears) {
+    birthdate.parentElement.appendChild(errorBirthdate)
+    birthdate.style.border ="2px solid #FF4E60"
+    errorBirthdate.style.display = "block";
+    errorBirthdate.innerHTML = "Veullez renseigner une date de naissance.";
     return false;
   }
   else {
@@ -210,6 +224,7 @@ function birthdateValid() {
     errorBirthdate.style.display = "none";
   }
   return true;
+
 }
 
 // Valider nombre de participation au tournoi GameOn
@@ -246,6 +261,7 @@ function locationValid() {
 function conditionsValid() {
   if(!conditions.checked) {
     document.getElementById("conditions").parentElement.appendChild(errorConditions);
+    errorConditions.style.display= "block";
     errorConditions.innerHTML = "Veuillez accepter les conditions d'utilisation.";
     return false;
   }
@@ -262,57 +278,67 @@ function conditionsValid() {
 first.addEventListener('change', (event) => {
   event.preventDefault();
   firstValid();
+  console.log(firstValid());
 });
 
 // Evenement input nom
 last.addEventListener('change', (event) => {
   event.preventDefault();
   lastValid();
+  console.log(lastValid());
 });
 
 // Evenement input email
 email.addEventListener('change', (event) => {
   event.preventDefault();
   emailValid();
+  console.log(emailValid());
 });
 
 // Evenement input birthdate
 birthdate.addEventListener('change', (event) => {
   event.preventDefault();
   birthdateValid();
+  console.log(birthdateValid());
 });
 
 // Evenement input quantity
 quantity.addEventListener('change', (event) => {
   event.preventDefault();
   quantityValid();
+  console.log(quantityValid());
 });
 
 // Evenement input location
 locations.addEventListener('change', (event) => {
   event.preventDefault();
   locationValid();
+  console.log(locationValid());
+  
 });
 
 // Evenement input conditions
 conditions.addEventListener('change', (event) => {
   event.preventDefault();
   conditionsValid()
-});
+  console.log(conditionsValid());
 
+});
 
 // Evenement au submit du formulaire
 form.addEventListener("submit", (event) => {
   // On empêche le comportement par défaut
   event.preventDefault();
-
+/*
   if(!first.value) {
     first.parentElement.appendChild(errorFirst);
     first.style.border="2px solid #FF4E60"
     errorFirst.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!last.value) {
-    last.parentElement.appendChild(errorLast);  
+    last.parentElement.appendChild(errorLast);
+    last.style.border="2px solid #FF4E60"
+    errorBirthdate.style.display = "block";
     errorLast.innerHTML = "Ce champ ne doit pas être vide.";
   }
   if(!email.value) {
@@ -327,6 +353,7 @@ form.addEventListener("submit", (event) => {
   }
   if(!quantity.value.match(regexQuantity)) {
     quantity.parentElement.appendChild(errorQuantity);
+    quantity.style.border="2px solid #FF4E60"
     errorQuantity.innerHTML = "Veuillez un nombre entre 0 et 99";
   }
   if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {
@@ -337,13 +364,21 @@ form.addEventListener("submit", (event) => {
     conditions.parentElement.appendChild(errorConditions);
     errorConditions.innerHTML = "Veulliez accepter les conditions d'utilisation";
   }
-
+*/
   // Si tous les champs du formulaires sont valide
   if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
     confirmValidation.style.display = 'block';
     confirmValidationBtnClose.style.display ='block';
-    form.style.display ="none";
-    form.reset();
+    form.style.display = "none";
   } 
+  form.reset();
+  error.style.display = "none";
+console.log("first = " + firstValid());
+console.log("last = " + lastValid());
+console.log("email = " + emailValid());
+console.log("birthdate = " + birthdateValid());
+console.log("quantity = " + quantityValid());
+console.log("locations = " + locationValid());
+console.log("conditions = " + conditionsValid());
 
 });
