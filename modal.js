@@ -325,6 +325,7 @@ conditions.addEventListener('change', (event) => {
 
 });
 
+
 // Evenement au submit du formulaire
 form.addEventListener("submit", (event) => {
   // On empêche le comportement par défaut
@@ -370,9 +371,9 @@ form.addEventListener("submit", (event) => {
     confirmValidation.style.display = 'block';
     confirmValidationBtnClose.style.display ='block';
     form.style.display = "none";
+    form.reset();
+    error.reset();
   } 
-  form.reset();
-  error.style.display = "none";
 console.log("first = " + firstValid());
 console.log("last = " + lastValid());
 console.log("email = " + emailValid());
@@ -380,5 +381,4 @@ console.log("birthdate = " + birthdateValid());
 console.log("quantity = " + quantityValid());
 console.log("locations = " + locationValid());
 console.log("conditions = " + conditionsValid());
-
 });
