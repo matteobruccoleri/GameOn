@@ -252,6 +252,7 @@ function locationValid() {
   }
   return true;
 };
+
 function conditionsValid() {
   if(!conditions.checked) {
     errorConditionsAdd();
@@ -264,32 +265,30 @@ function conditionsValid() {
 };
 
 // Evenement des inputs du formulaires
-
-// Evenement input prénom
 first.addEventListener('change', () => {
   firstValid();
 });
-// Evenement input nom
+
 last.addEventListener('change', () => {
   lastValid();
 });
-// Evenement input email
+
 email.addEventListener('change', () => {
   emailValid();
 });
-// Evenement input birthdate
+
 birthdate.addEventListener('change', () => {
   birthdateValid();
 });
-// Evenement input quantity
+
 quantity.addEventListener('change', () => {
   quantityValid();
 });
-// Evenement input location
+
 locations.addEventListener('change', () => {
   locationValid(); 
 });
-// Evenement input conditions
+
 conditions.addEventListener('change', () => {
   conditionsValid()
 });
@@ -315,5 +314,5 @@ form.addEventListener("submit", (event) => {
     // Réinitiliser les champs du formulaires
     form.reset();
   } 
-
+  
 });
