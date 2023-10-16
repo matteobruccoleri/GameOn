@@ -1,5 +1,3 @@
-/********** navbar tablet et mobile ***********/
-
 // DOM Elements
 const icon = document.querySelector(".icon");
 const navbar = document.querySelector(".main-navbar");
@@ -21,30 +19,29 @@ icon.addEventListener("click", openNavbar);
 // Cliquer sur navabr-close pour fermer la navbar de la version tablette ou mobile
 navbarClose.addEventListener("click", removeNavbar);
 
-/********** Formulaire ***********/
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector(".close");
 const modalBgContent = document.querySelector(".content");
-const confirmValidation = document.querySelector(".message-validation");
-const confirmValidationBtnClose = document.querySelector(".message-validation_close");
+const messageValidation = document.querySelector(".message-validation");
+const messageValidationBtnClose = document.querySelector(".message-validation_close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // close modal event
 closeForm.addEventListener("click", closeModal);
-confirmValidationBtnClose.addEventListener("click", closeModal);
+messageValidationBtnClose.addEventListener("click", closeModal);
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
   form.style.display ="block";
   modalBgContent.classList.remove("closed");
-  confirmValidation.style.display = 'none';
-  confirmValidationBtnClose.style.display = 'none';
+  messageValidation.style.display = 'none';
+  messageValidationBtnClose.style.display = 'none';
 }
 
 // close modal form
@@ -55,8 +52,7 @@ function closeModal() {
   }, 800);
 }
 
-//////////////////////////
-// Input du formulaire //
+// DOM Elements
 const form = document.getElementById("form");
 const first = document.getElementById("first");
 const last = document.getElementById("last");
@@ -69,22 +65,15 @@ const location3 = document.getElementById("location3");
 const location4 = document.getElementById("location4");
 const location5 = document.getElementById("location5");
 const location6 = document.getElementById("location6");
-const locations = document.getElementById("locations");
 const conditions = document.getElementById("checkbox1");
 
-////////////
-// Regex //
-
+// Regex
 const regexName = /^([A-Za-z|\s]{2,15})?([-]{0,1})?([A-Za-z|\s]{2,15})$/g;
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 //const regexDate = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
 const regexQuantity = /^[1-9]{0,1}[0-9]$/g;
 
-
-
-/////////////////////////////////////////////////////////////
-// Créer un message d'erreur pour les inputs du formulaire //
-
+// Créer un message d'erreur pour les inputs du formulaire
 let messageFirst = document.createElement("p");
 let messageLast = document.createElement("p");
 let messageEmail = document.createElement("p");
@@ -93,16 +82,13 @@ let messageQuantity = document.createElement("p");
 let messageLocations = document.createElement("p");
 let messageConditions = document.createElement("p");
 
-
 // Ajouter une classe au message d'erreur
 const error = [messageFirst, messageLast, messageEmail, messageBirthdate, messageQuantity, messageLocations, messageConditions];
 for (let i = 0; i < error.length; i++) {
-  //error[i] = document.createElement("p");
   error[i].classList.add("error");
 }
 
-
-// fonction qui ajoute l'erreur
+// Ajouter les messages d'erreur
 function ErrorFirstAdd() {
   first.parentElement.appendChild(messageFirst);
   first.style.border ="2px solid #FF4E60";
@@ -113,9 +99,34 @@ function errorLastAdd() {
   last.style.border ="2px solid #FF4E60";
   messageLast.style.display = "block";
 }
+function errorEmailAdd() {
+  email.parentElement.appendChild(messageEmail);
+  email.style.border ="2px solid #FF4E60";
+  messageEmail.style.display = "block";
+}
+function errorBirthdateAdd() {
+  birthdate.parentElement.appendChild(messageBirthdate);
+  birthdate.style.border ="2px solid #FF4E60";
+  messageBirthdate.style.display = "block";
+}
+function errorQuantityAdd() {
+  quantity.parentElement.appendChild(messageQuantity);
+  quantity.style.border ="2px solid #FF4E60";
+  messageQuantity.style.display = "block";
+  messageQuantity.innerHTML = "Veuillez renseigner un nombre entre 0 et 99.";
+}
+function errorLocationAdd() {
+  location6.parentElement.appendChild(messageLocations);
+  messageLocations.style.display= "block";
+  messageLocations.innerHTML = "Veuillez renseigner un tournoi auquel participer.";
+}
+function errorConditionsAdd() {
+  document.getElementById("conditions").parentElement.appendChild(messageConditions);
+  messageConditions.style.display= "block";
+  messageConditions.innerHTML = "Veuillez accepter les conditions d'utilisation.";
+}
 
-
-// fonction qui enlève l'erreur
+// Enlèver les messages d'erreur
 function errorFirstRemove() {
   first.style.border ="none"
   messageFirst.style.display = "none";
@@ -124,33 +135,27 @@ function errorLastRemove() {
   last.style.border ="none"
   messageLast.style.display = "none";
 }
+function errorEmailRemove() {
+  email.style.border ="none"
+  messageEmail.style.display = "none";
+}
+function errorBirthdateRemove() {
+  birthdate.style.border ="none"
+  messageBirthdate.style.display = "none";
+}
+function errorQuantityRemove() {
+  quantity.style.border ="none"
+  messageQuantity.style.display = "none";
+}
 
-/*
-messageLast.classList.add("error");
-//
-
-messageEmail.classList.add("error");
-//
-messageBirthdate.classList.add("error");
-//
-messageQuantity.classList.add("error");
-//
-messageLocations.classList.add("error");
-//
-messageConditions.classList.add("error");
-*/
-
-////////////////////////////////////////////////////////
 // Fonction de validation des inputs du formulaires //
-
-// Valider le prénom
 function firstValid() {
   if (first.value.length < 2) {
     ErrorFirstAdd();
     messageFirst.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
     return false;
   }
-  else if(!first.value.match(regexName)) {
+  if(!first.value.match(regexName)) {
     ErrorFirstAdd();
     messageFirst.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux";
     return false;
@@ -161,14 +166,13 @@ function firstValid() {
   return true;
 };
 
-// Valider le nom
 function lastValid() {
   if(last.value.length < 2) {
     errorLastAdd();
     messageLast.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
     return false;
   }
-  else if(!last.value.match(regexName)) {
+  if(!last.value.match(regexName)) {
     errorLastAdd();
     messageLast.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux.";
     return false;
@@ -179,158 +183,114 @@ function lastValid() {
   return true;
 };
 
-// Valider l'email
 function emailValid() {
   if(!email.value) {
-    email.parentElement.appendChild(errorEmail);
-    email.style.border ="2px solid #FF4E60"
-    errorEmail.style.display = "block";
-    errorEmail.innerHTML = "Veuillez renseigner une adresse email.";
+    errorEmailAdd()
+    messageEmail.innerHTML = "Veuillez renseigner une adresse email.";
     return false;
   }
   if(!email.value.match(regexEmail)) {
-    email.parentElement.appendChild(errorEmail);
-    email.style.border ="2px solid #FF4E60"
-    errorEmail.style.display = "block";
-    errorEmail.innerHTML = "Veuillez renseigner une adresse email valide.";
+    errorEmailAdd();
+    messageEmail.innerHTML = "Veuillez renseigner une adresse email valide.";
     return false;
   }
   else {
-    email.style.border ="none"
-    errorEmail.style.display = "none";
+    errorEmailRemove();
   }
   return true;
 }
 
-// Valider la date de naissance
 function birthdateValid() {
   //Récupérer la date de naissance de l'utilsiateur
   const birthdateValue = new Date(birthdate.value);
-
   //Récupérer la date actuelle
   const currentDate = new Date();
-
   //Calculez la différence entre la date actuelle et la date de naissance
   const difference_currentDate_birthdate = currentDate - birthdateValue;
-
   // Convertissez la différence en années                    // nombre de millisecondes dans une année
   const differenceInYears = difference_currentDate_birthdate / (1000 * 60 * 60 * 24 * 365); 
-
   // 4. Vérifiez si l'utilisateur a plus de 18 ans
   if (differenceInYears < 18) {
-    birthdate.parentElement.appendChild(errorBirthdate);
-    birthdate.style.border ="2px solid #FF4E60"
-    errorBirthdate.style.display = "block";
-    errorBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
+    errorBirthdateAdd();
+    messageBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
     return false;
   }
-  else if (differenceInYears > 130) {
-    birthdate.parentElement.appendChild(errorBirthdate)
-    birthdate.style.border ="2px solid #FF4E60"
-    errorBirthdate.style.display = "block";
-    errorBirthdate.innerHTML = "Veullez renseigner une date de naissance valide.";
+  if (differenceInYears > 130) {
+    errorBirthdateAdd();
+    messageBirthdate.innerHTML = "Veullez renseigner une date de naissance valide.";
     return false;
   }
-  else if (!differenceInYears) {
-    birthdate.parentElement.appendChild(errorBirthdate)
-    birthdate.style.border ="2px solid #FF4E60"
-    errorBirthdate.style.display = "block";
-    errorBirthdate.innerHTML = "Veullez renseigner une date de naissance.";
+  if (!differenceInYears) {
+    errorBirthdateAdd();
+    messageBirthdate.innerHTML = "Veullez renseigner une date de naissance.";
     return false;
   }
   else {
-    birthdate.style.border ="none"
-    errorBirthdate.style.display = "none";
+    errorBirthdateRemove();
   }
   return true;
 }
 
-// Valider nombre de participation au tournoi GameOn
 function quantityValid() {
   if(!quantity.value.match(regexQuantity)) {
-    quantity.parentElement.appendChild(errorQuantity);
-    quantity.style.border="2px solid #FF4E60"
-    errorQuantity.style.display = "block";
-    errorQuantity.innerHTML = "Veuillez renseigner un nombre entre 0 et 99.";
+    errorQuantityAdd();
     return false;
   }
   else {
-    quantity.style.border ="none"
-    errorQuantity.style.display = "none";
+    errorQuantityRemove();
   }
   return true;
 }
 
-// Valider choix localisation tournoi
 function locationValid() {
   if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {
-    location6.parentElement.appendChild(errorLocations);
-    errorLocations.style.display= "block";
-    errorLocations.innerHTML = "Veuillez renseigner un tournoi auquel participer.";
+    errorLocationAdd();
     return false;
   }
   else {
-    errorLocations.style.display = "none";
+    messageLocations.style.display = "none";
   }
   return true;
 };
- 
-// Valider les conditions d'utilisation
 function conditionsValid() {
   if(!conditions.checked) {
-    document.getElementById("conditions").parentElement.appendChild(errorConditions);
-    errorConditions.style.display= "block";
-    errorConditions.innerHTML = "Veuillez accepter les conditions d'utilisation.";
+    errorConditionsAdd();
     return false;
   }
   else {
-    errorConditions.style.display= "none";
+    messageConditions.style.display = "none";
   }
   return true;
 };
 
-//////////////////////////////////////////
-// Evenement des inputs du formulaires //
+// Evenement des inputs du formulaires
 
 // Evenement input prénom
-first.addEventListener('change', (event) => {
-  event.preventDefault();
+first.addEventListener('change', () => {
   firstValid();
 });
-
 // Evenement input nom
-last.addEventListener('change', (event) => {
-  event.preventDefault();
+last.addEventListener('change', () => {
   lastValid();
 });
-
 // Evenement input email
-email.addEventListener('change', (event) => {
-  event.preventDefault();
+email.addEventListener('change', () => {
   emailValid();
 });
-
 // Evenement input birthdate
-birthdate.addEventListener('change', (event) => {
-  event.preventDefault();
+birthdate.addEventListener('change', () => {
   birthdateValid();
 });
-
 // Evenement input quantity
-quantity.addEventListener('change', (event) => {
-  event.preventDefault();
+quantity.addEventListener('change', () => {
   quantityValid();
 });
-
 // Evenement input location
-locations.addEventListener('change', (event) => {
-  event.preventDefault();
+locations.addEventListener('change', () => {
   locationValid(); 
 });
-
 // Evenement input conditions
-conditions.addEventListener('change', (event) => {
-  event.preventDefault();
+conditions.addEventListener('change', () => {
   conditionsValid()
 });
 
@@ -349,8 +309,8 @@ form.addEventListener("submit", (event) => {
 
   // Si tous les champs du formulaires sont valide
   if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
-    confirmValidation.style.display = 'block';
-    confirmValidationBtnClose.style.display ='block';
+    messageValidation.style.display = 'block';
+    messageValidationBtnClose.style.display ='block';
     form.style.display = "none";
     // Réinitiliser les champs du formulaires
     form.reset();
