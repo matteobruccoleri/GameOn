@@ -22,7 +22,6 @@ icon.addEventListener("click", openNavbar);
 navbarClose.addEventListener("click", removeNavbar);
 
 /********** Formulaire ***********/
-
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -31,7 +30,6 @@ const closeForm = document.querySelector(".close");
 const modalBgContent = document.querySelector(".content");
 const confirmValidation = document.querySelector(".message-validation");
 const confirmValidationBtnClose = document.querySelector(".message-validation_close");
-const error = document.querySelectorAll(".error");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -60,14 +58,11 @@ function closeModal() {
 //////////////////////////
 // Input du formulaire //
 const form = document.getElementById("form");
-
 const first = document.getElementById("first");
 const last = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
-const input = document.getElementsByTagName("input");
 const quantity = document.getElementById("quantity");
-
 const location1 = document.getElementById("location1");
 const location2 = document.getElementById("location2");
 const location3 = document.getElementById("location3");
@@ -75,7 +70,6 @@ const location4 = document.getElementById("location4");
 const location5 = document.getElementById("location5");
 const location6 = document.getElementById("location6");
 const locations = document.getElementById("locations");
-
 const conditions = document.getElementById("checkbox1");
 
 ////////////
@@ -86,30 +80,65 @@ const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 //const regexDate = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
 const regexQuantity = /^[1-9]{0,1}[0-9]$/g;
 
+
+
 /////////////////////////////////////////////////////////////
 // Créer un message d'erreur pour les inputs du formulaire //
 
+let messageFirst = document.createElement("p");
+let messageLast = document.createElement("p");
+let messageEmail = document.createElement("p");
+let messageBirthdate = document.createElement("p");
+let messageQuantity = document.createElement("p");
+let messageLocations = document.createElement("p");
+let messageConditions = document.createElement("p");
+
+
+// Ajouter une classe au message d'erreur
+const error = [messageFirst, messageLast, messageEmail, messageBirthdate, messageQuantity, messageLocations, messageConditions];
+for (let i = 0; i < error.length; i++) {
+  //error[i] = document.createElement("p");
+  error[i].classList.add("error");
+}
+
+
+// fonction qui ajoute l'erreur
+function ErrorFirstAdd() {
+  first.parentElement.appendChild(messageFirst);
+  first.style.border ="2px solid #FF4E60";
+  messageFirst.style.display = "block";
+}
+function errorLastAdd() {
+  last.parentElement.appendChild(messageLast);
+  last.style.border ="2px solid #FF4E60";
+  messageLast.style.display = "block";
+}
+
+
+// fonction qui enlève l'erreur
+function errorFirstRemove() {
+  first.style.border ="none"
+  messageFirst.style.display = "none";
+}
+function errorLastRemove() {
+  last.style.border ="none"
+  messageLast.style.display = "none";
+}
+
+/*
+messageLast.classList.add("error");
 //
-let errorFirst = document.createElement("p");
-errorFirst.classList.add("error");
+
+messageEmail.classList.add("error");
 //
-let errorLast = document.createElement("p");
-errorLast.classList.add("error");
+messageBirthdate.classList.add("error");
 //
-let errorEmail = document.createElement("p");
-errorEmail.classList.add("error");
+messageQuantity.classList.add("error");
 //
-let errorBirthdate = document.createElement("p");
-errorBirthdate.classList.add("error");
+messageLocations.classList.add("error");
 //
-let errorQuantity = document.createElement("p");
-errorQuantity.classList.add("error");
-//
-let errorLocations = document.createElement("p");
-errorLocations.classList.add("error");
-//
-let errorConditions = document.createElement("p");
-errorConditions.classList.add("error");
+messageConditions.classList.add("error");
+*/
 
 ////////////////////////////////////////////////////////
 // Fonction de validation des inputs du formulaires //
@@ -117,22 +146,17 @@ errorConditions.classList.add("error");
 // Valider le prénom
 function firstValid() {
   if (first.value.length < 2) {
-    first.parentElement.appendChild(errorFirst);
-    first.style.border ="2px solid #FF4E60";
-    errorFirst.style.display = "block";
-    errorFirst.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
+    ErrorFirstAdd();
+    messageFirst.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
     return false;
   }
   else if(!first.value.match(regexName)) {
-    first.parentElement.appendChild(errorFirst);
-    first.style.border ="2px solid #FF4E60";
-    errorFirst.style.display = "block";
-    errorFirst.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux";
+    ErrorFirstAdd();
+    messageFirst.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux";
     return false;
   }
   else {
-    first.style.border ="none"
-    errorFirst.style.display = "none";
+    errorFirstRemove();
   }
   return true;
 };
@@ -140,22 +164,17 @@ function firstValid() {
 // Valider le nom
 function lastValid() {
   if(last.value.length < 2) {
-    last.parentElement.appendChild(errorLast);
-    last.style.border ="2px solid #FF4E60";
-    errorLast.style.display = "block";
-    errorLast.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
+    errorLastAdd();
+    messageLast.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
     return false;
   }
   else if(!last.value.match(regexName)) {
-    last.parentElement.appendChild(errorLast);
-    last.style.border ="2px solid #FF4E60";
-    errorLast.style.display = "block";
-    errorLast.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux.";
+    errorLastAdd();
+    messageLast.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux.";
     return false;
 }
   else {
-    last.style.border ="none"
-    errorLast.style.display ="none";
+    errorLastRemove();
   }
   return true;
 };
@@ -224,7 +243,6 @@ function birthdateValid() {
     errorBirthdate.style.display = "none";
   }
   return true;
-
 }
 
 // Valider nombre de participation au tournoi GameOn
@@ -278,107 +296,64 @@ function conditionsValid() {
 first.addEventListener('change', (event) => {
   event.preventDefault();
   firstValid();
-  console.log(firstValid());
 });
 
 // Evenement input nom
 last.addEventListener('change', (event) => {
   event.preventDefault();
   lastValid();
-  console.log(lastValid());
 });
 
 // Evenement input email
 email.addEventListener('change', (event) => {
   event.preventDefault();
   emailValid();
-  console.log(emailValid());
 });
 
 // Evenement input birthdate
 birthdate.addEventListener('change', (event) => {
   event.preventDefault();
   birthdateValid();
-  console.log(birthdateValid());
 });
 
 // Evenement input quantity
 quantity.addEventListener('change', (event) => {
   event.preventDefault();
   quantityValid();
-  console.log(quantityValid());
 });
 
 // Evenement input location
 locations.addEventListener('change', (event) => {
   event.preventDefault();
-  locationValid();
-  console.log(locationValid());
-  
+  locationValid(); 
 });
 
 // Evenement input conditions
 conditions.addEventListener('change', (event) => {
   event.preventDefault();
   conditionsValid()
-  console.log(conditionsValid());
-
 });
-
 
 // Evenement au submit du formulaire
 form.addEventListener("submit", (event) => {
   // On empêche le comportement par défaut
   event.preventDefault();
-/*
-  if(!first.value) {
-    first.parentElement.appendChild(errorFirst);
-    first.style.border="2px solid #FF4E60"
-    errorFirst.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!last.value) {
-    last.parentElement.appendChild(errorLast);
-    last.style.border="2px solid #FF4E60"
-    errorBirthdate.style.display = "block";
-    errorLast.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!email.value) {
-    email.parentElement.appendChild(errorEmail);
-    email.style.border="2px solid #FF4E60"
-    errorEmail.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!birthdate.value) {
-    birthdate.parentElement.appendChild(errorBirthdate);
-    birthdate.style.border="2px solid #FF4E60"
-    errorBirthdate.innerHTML = "Ce champ ne doit pas être vide.";
-  }
-  if(!quantity.value.match(regexQuantity)) {
-    quantity.parentElement.appendChild(errorQuantity);
-    quantity.style.border="2px solid #FF4E60"
-    errorQuantity.innerHTML = "Veuillez un nombre entre 0 et 99";
-  }
-  if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {
-    location6.parentElement.appendChild(errorLocations);
-    errorLocations.innerHTML = "Veuillez renseigner un tournoi auquel participer.";
-  }
-  if(!conditions.checked) {
-    conditions.parentElement.appendChild(errorConditions);
-    errorConditions.innerHTML = "Veulliez accepter les conditions d'utilisation";
-  }
-*/
+
+  firstValid();
+  lastValid();
+  emailValid();
+  birthdateValid();
+  quantityValid();
+  locationValid();
+  conditionsValid();
+
   // Si tous les champs du formulaires sont valide
   if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
     confirmValidation.style.display = 'block';
     confirmValidationBtnClose.style.display ='block';
     form.style.display = "none";
+    // Réinitiliser les champs du formulaires
     form.reset();
-    error.reset();
   } 
-console.log("first = " + firstValid());
-console.log("last = " + lastValid());
-console.log("email = " + emailValid());
-console.log("birthdate = " + birthdateValid());
-console.log("quantity = " + quantityValid());
-console.log("locations = " + locationValid());
-console.log("conditions = " + conditionsValid());
+
 });
