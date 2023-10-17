@@ -154,20 +154,12 @@ main {
   animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
-  overflow: hidden;
+ /*overflow: hidden;*/
   position: relative;
   color: #fff;
 }
 
-.open {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  animation: modalopen;
-}
+
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -591,12 +583,21 @@ footer {
     transition: 0.5s ease-in-out;
     display: none;
   }
+  .open {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    animation: modalopen;
+  }
   .navbar-close  {
     display: block;
   }
-  .content {
+  /*.content {
     height: 100%;
-  }
+  }*/
 }
 
  @media screen and (max-width: 540px) {
@@ -654,3 +655,5 @@ input[data-error]::after {
     font-size: 0.4em;
     color: red;
 } */
+
+
