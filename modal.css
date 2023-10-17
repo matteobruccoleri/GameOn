@@ -406,8 +406,8 @@ input {
   margin-bottom: 10px;
 }
 .hero-content {
-  padding: 50px;
-  width: 35%;
+  padding: 50px 62px;
+  width: 40%;
   background: #232323;
   color: #fff;
   position: relative;
@@ -448,7 +448,7 @@ input {
   margin-top: 59px;
 }
 .hero-img {
-  width: 65%;
+  width: 60%;
 }
 .hero-img img {
   width: 100%;
@@ -550,6 +550,9 @@ footer {
   }
   .hero-text {
     font-size: 18px;
+  }
+  .hero-img {
+    width: 100%;
   }
   .hero-img img {
     border-radius: 10px;
