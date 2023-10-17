@@ -7,12 +7,10 @@ const navbarClose = document.querySelector(".navbar-close");
 function openNavbar() {
   navbar.classList.add("open");
 }
-
 // Enlever la class open à main-navbar 
 function removeNavbar() {
   navbar.classList.remove("open"); 
 }
-
 // Cliquer sur l'icon pour ouvrir la navbar de la version tablette ou mobile
 icon.addEventListener("click", openNavbar);
 
@@ -65,6 +63,7 @@ const location3 = document.getElementById("location3");
 const location4 = document.getElementById("location4");
 const location5 = document.getElementById("location5");
 const location6 = document.getElementById("location6");
+const locations = document.getElementById("locations");
 const conditions = document.getElementById("checkbox1");
 
 // Regex
@@ -84,6 +83,7 @@ let messageConditions = document.createElement("p");
 
 // Ajouter une classe au message d'erreur
 const error = [messageFirst, messageLast, messageEmail, messageBirthdate, messageQuantity, messageLocations, messageConditions];
+
 for (let i = 0; i < error.length; i++) {
   error[i].classList.add("error");
 }
@@ -126,7 +126,7 @@ function errorConditionsAdd() {
   messageConditions.innerHTML = "Veuillez accepter les conditions d'utilisation.";
 }
 
-// Enlèver les messages d'erreur
+// Enlever les messages d'erreur
 function errorFirstRemove() {
   first.style.border ="none"
   messageFirst.style.display = "none";
@@ -268,27 +268,21 @@ function conditionsValid() {
 first.addEventListener('change', () => {
   firstValid();
 });
-
 last.addEventListener('change', () => {
   lastValid();
 });
-
 email.addEventListener('change', () => {
   emailValid();
 });
-
 birthdate.addEventListener('change', () => {
   birthdateValid();
 });
-
 quantity.addEventListener('change', () => {
   quantityValid();
 });
-
 locations.addEventListener('change', () => {
   locationValid(); 
 });
-
 conditions.addEventListener('change', () => {
   conditionsValid()
 });
@@ -313,6 +307,5 @@ form.addEventListener("submit", (event) => {
     form.style.display = "none";
     // Réinitiliser les champs du formulaires
     form.reset();
-  } 
-  
+  }  
 });
