@@ -39,7 +39,6 @@ function launchModal() {
   form.style.display ="block";
   modalBgContent.classList.remove("closed");
   messageValidation.style.display = 'none';
-  messageValidationBtnClose.style.display = 'none';
 }
 
 // close modal form
@@ -303,7 +302,6 @@ form.addEventListener("submit", (event) => {
   // Si tous les champs du formulaires sont valide
   if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
     messageValidation.style.display = 'block';
-    messageValidationBtnClose.style.display ='block';
     form.style.display = "none";
     // Réinitiliser les champs du formulaires
     form.reset();
