@@ -29,7 +29,7 @@ p {
 
 /********** Header **********/
 .topnav {
-  margin: 3.5% 0;
+  height: 15vh;
   padding: 0 3.5%;
   display: flex;
   flex-wrap: wrap;
@@ -60,8 +60,20 @@ p {
   font-size: 18px;
   font-family: DM Sans, sans-serif;
   font-weight: 600;
+  position: relative;
 }
-
+.topnav a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0%;
+  height: 1px;
+  background-color: #fff;
+  transition: 0.3s;
+}
 .topnav a:hover {
   background-color: #FE142F;
   color: #ffffff;
@@ -73,7 +85,9 @@ p {
   color: #ffffff;
   border-radius: 8px;
 }
-
+.topnav a:hover::after {
+  width: 90%;
+}
 .topnav .icon {
   display: none;
 }
@@ -87,7 +101,7 @@ main {
   font-size: 130%;
   font-weight: bolder;
   color: black;
-  margin: 0 3.5%;
+  margin: 3.5%;
   border-radius: 2rem;
   text-align: justify;
 
@@ -112,8 +126,8 @@ main {
 
 /* Modal form */
 .modal-body {
-  padding: 15px 8%;
-  margin: 15px auto;
+  padding: 8%;
+  margin: auto;
 }
 .button {
   background: #fe142f;
@@ -146,7 +160,7 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 15vh auto;
   width: 100%;
   max-width: 500px;
   min-height: 550Px;
@@ -298,6 +312,7 @@ input {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+  z-index: 99;
 }
 .close:before,
 .close:after {
@@ -403,7 +418,6 @@ input {
   display: flex;
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
-  margin-bottom: 10px;
 }
 .hero-content {
   padding: 50px;
@@ -469,9 +483,10 @@ input {
 }
 
 .error {
-  font-size: 16px;
+  font-size: 14px;
   color: #FF4E60;
   text-align: left;
+  font-weight: 400;
 }
 .valide {
   font-size: 16px;
@@ -480,13 +495,17 @@ input {
 /********** Footer **********/
 footer {
   margin: 0 3.5%;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .message-validation {
   display: none;
   padding: 25px;
   position: absolute;
-  z-index: 999;
+  z-index: 1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -495,6 +514,15 @@ footer {
   border-radius: 15px;
   width: 100%;
   text-align: center;
+  height: 100%;
+}
+.message-validation_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  width: 90%;
 }
 .message-validation p {
   font-weight: 400;
@@ -502,7 +530,6 @@ footer {
 }
 .message-validation_close {
   background: #fe142f;
-  display: none;
   margin-bottom: 20px;
   padding: 2em;
   color: #fff;
@@ -565,6 +592,9 @@ footer {
     display: block;
     margin: 32px auto 10px;
     padding: 12px 35px;
+  }
+  footer {
+    justify-content: center;
   }
   .copyrights {
     margin: 30px 0;
