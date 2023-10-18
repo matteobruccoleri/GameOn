@@ -1,4 +1,4 @@
-// DOM Elements
+// DOM Elements navbar
 const icon = document.querySelector(".icon");
 const navbar = document.querySelector(".main-navbar");
 const navbarClose = document.querySelector(".navbar-close");
@@ -14,10 +14,10 @@ function removeNavbar() {
 // Cliquer sur l'icon pour ouvrir la navbar de la version tablette ou mobile
 icon.addEventListener("click", openNavbar);
 
-// Cliquer sur navabr-close pour fermer la navbar de la version tablette ou mobile
+// Cliquer sur navbar-close pour fermer la navbar de la version tablette ou mobile
 navbarClose.addEventListener("click", removeNavbar);
 
-// DOM Elements
+// DOM Elements modal
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -49,7 +49,7 @@ function closeModal() {
   }, 800);
 }
 
-// DOM Elements
+// DOM Elements form & input
 const form = document.getElementById("form");
 const first = document.getElementById("first");
 const last = document.getElementById("last");
@@ -68,7 +68,6 @@ const conditions = document.getElementById("checkbox1");
 // Regex
 const regexName = /^([A-Za-z|\s]{2,15})?([-]{0,1})?([A-Za-z|\s]{2,15})$/g;
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-//const regexDate = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
 const regexQuantity = /^[1-9]{0,1}[0-9]$/g;
 
 // Créer un message d'erreur pour les inputs du formulaire
