@@ -398,7 +398,7 @@ input {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
+  /*min-height: 93vh;*/
   border-radius: 10px;
   display: flex;
   overflow: hidden;
@@ -406,13 +406,13 @@ input {
   margin-bottom: 10px;
 }
 .hero-content {
-  padding: 50px 62px;
+  padding: 50px;
   width: 40%;
   background: #232323;
   color: #fff;
   position: relative;
   text-align: left;
-  min-width: 424px;
+  /*min-width: 424px;*/
 }
 /*
 .hero-content::after {
@@ -461,7 +461,7 @@ input {
   color: #fe142f;
   padding: 0;
   font-size: 1rem;
-  margin: 60px 0 30px;
+  margin: 30px 0;
   font-weight: bolder;
 }
 .hero-section > .btn-signup {
@@ -479,9 +479,7 @@ input {
 }
 /********** Footer **********/
 footer {
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 0 20px;
+  margin: 0 3.5%;
 }
 
 .message-validation {
@@ -523,6 +521,11 @@ footer {
 }
 
 /********** Responsive **********/
+@media screen and (max-width: 1024px) {
+  h1 {
+    font-size: 5rem;
+  }
+}
 @media screen and (max-width: 800px) {
   .topnav a {
     font-size: 16px;
@@ -564,7 +567,7 @@ footer {
     padding: 12px 35px;
   }
   .copyrights {
-    margin-top: 50px;
+    margin: 30px 0;
     text-align: center;
   }
 }
@@ -581,7 +584,7 @@ footer {
     top: 0%;
     background-color: #ffffff;
     color: #060606;
-    margin: 3.5% 0;
+    /*margin: 3.5% 0;*/
     transition: 0.5s ease-in-out;
     display: none;
   }
