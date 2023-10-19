@@ -1,9 +1,9 @@
 # [GameOn](https://matteobruccoleri.github.io/GameOn-website-FR/) 👀
 
-#1 TODO : fermer la modale: 
-Ajouter la fonctionnalité au bouton (x)
+<h2>#1 TODO :</h2> 
+* Fermer la modale: Ajouter la fonctionnalité au bouton (x)
 
-#2 Implémenter entrées du formulaire:
+#2 Implémenter entrées du formulaire :
 * Lier les labels aux entrées dans le HTML en utilisant les attributs "for" et "id" dans le code existant. Corriger le code HTML quand nécessaire.
 * Utiliser du JavaScript pur (pas de jQuery) pour terminer le formulaire :
 Le formulaire doit être valide quand l'utilisateur clique sur "Submit"
