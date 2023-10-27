@@ -1,34 +1,38 @@
-// DOM Elements navbar
+// DOM Elements
 const icon = document.querySelector(".icon");
 const navbar = document.querySelector(".main-navbar");
 const navbarClose = document.querySelector(".navbar-close");
-
-// Ajouter la class open à main-navbar
-function openNavbar() {
-  navbar.classList.add("open");
-}
-// Enlever la class open à main-navbar 
-function removeNavbar() {
-  navbar.classList.remove("open"); 
-}
-// Cliquer sur l'icon pour ouvrir la navbar de la version tablette ou mobile
-icon.addEventListener("click", openNavbar);
-
-// Cliquer sur navbar-close pour fermer la navbar de la version tablette ou mobile
-navbarClose.addEventListener("click", removeNavbar);
-
-// DOM Elements modal
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector(".close");
 const modalBgContent = document.querySelector(".content");
 const messageValidation = document.querySelector(".message-validation");
 const messageValidationBtnClose = document.querySelector(".message-validation_close");
+const form = document.getElementById("form");
+const first = document.getElementById("first");
+const last = document.getElementById("last");
+const email = document.getElementById("email");
+const birthdate = document.getElementById("birthdate");
+const quantity = document.getElementById("quantity");
+const locations = document.querySelectorAll('input[name="location"]');
+const conditions = document.getElementById("checkbox1");
+
+// Ajoute la class open à main-navbar
+function openNavbar() {
+  navbar.classList.add("open");
+}
+// Enlève la class open à main-navbar
+function removeNavbar() {
+  navbar.classList.remove("open"); 
+}
+
+// Ouvre la navbar
+icon.addEventListener("click", openNavbar);
+// Ferme la navbar
+navbarClose.addEventListener("click", removeNavbar);
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
 // close modal event
 closeForm.addEventListener("click", closeModal);
 messageValidationBtnClose.addEventListener("click", closeModal);
@@ -40,7 +44,6 @@ function launchModal() {
   modalBgContent.classList.remove("closed");
   messageValidation.style.display = 'none';
 }
-
 // close modal form
 function closeModal() {
   modalBgContent.classList.add("closed");
@@ -49,260 +52,175 @@ function closeModal() {
   }, 800);
 }
 
-// DOM Elements form & input
-const form = document.getElementById("form");
-const first = document.getElementById("first");
-const last = document.getElementById("last");
-const email = document.getElementById("email");
-const birthdate = document.getElementById("birthdate");
-const quantity = document.getElementById("quantity");
-const location1 = document.getElementById("location1");
-const location2 = document.getElementById("location2");
-const location3 = document.getElementById("location3");
-const location4 = document.getElementById("location4");
-const location5 = document.getElementById("location5");
-const location6 = document.getElementById("location6");
-const locations = document.getElementById("locations");
-const conditions = document.getElementById("checkbox1");
-
-// Regex
+// Regex (expression régulière)
 const regexName = /^([A-Za-z|\s]{2,15})?([-]{0,1})?([A-Za-z|\s]{2,15})$/g;
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 const regexQuantity = /^[1-9]{0,1}[0-9]$/g;
 
-// Créer un message d'erreur pour les inputs du formulaire
-let messageFirst = document.createElement("p");
-let messageLast = document.createElement("p");
-let messageEmail = document.createElement("p");
-let messageBirthdate = document.createElement("p");
-let messageQuantity = document.createElement("p");
-let messageLocations = document.createElement("p");
-let messageConditions = document.createElement("p");
-
-// Ajouter une classe au message d'erreur
-const error = [messageFirst, messageLast, messageEmail, messageBirthdate, messageQuantity, messageLocations, messageConditions];
-
-for (let i = 0; i < error.length; i++) {
-  error[i].classList.add("error");
+// Message d'erreur des inputs
+const message = {
+  name: "Ce champ doit contenir minimum 2 caractères.",
+  name2: "Ce champ ne doit pas contenir de caractères spéciaux.",
+  email: "Veuillez renseigner une adresse email.",
+  email2: "Veuillez renseigner une adresse email valide.",
+  birthdate: "Vous devez avoir plus de 18 ans pour participer.",
+  birthdate2: "Veullez renseigner une date de naissance valide.",
+  birthdate3: "Veullez renseigner une date de naissance.",
+  quantity: "Veuillez renseigner un nombre entre 0 et 99.",
+  locations: "Veuillez renseigner un tournoi auquel participer.",
+  conditions: "Veuillez accepter les conditions d'utilisation."
 }
 
-// Ajouter les messages d'erreur
-function ErrorFirstAdd() {
-  first.parentElement.appendChild(messageFirst);
-  first.style.border ="2px solid #FF4E60";
-  messageFirst.style.display = "block";
-}
-function errorLastAdd() {
-  last.parentElement.appendChild(messageLast);
-  last.style.border ="2px solid #FF4E60";
-  messageLast.style.display = "block";
-}
-function errorEmailAdd() {
-  email.parentElement.appendChild(messageEmail);
-  email.style.border ="2px solid #FF4E60";
-  messageEmail.style.display = "block";
-}
-function errorBirthdateAdd() {
-  birthdate.parentElement.appendChild(messageBirthdate);
-  birthdate.style.border ="2px solid #FF4E60";
-  messageBirthdate.style.display = "block";
-}
-function errorQuantityAdd() {
-  quantity.parentElement.appendChild(messageQuantity);
-  quantity.style.border ="2px solid #FF4E60";
-  messageQuantity.style.display = "block";
-  messageQuantity.innerHTML = "Veuillez renseigner un nombre entre 0 et 99.";
-}
-function errorLocationAdd() {
-  location6.parentElement.appendChild(messageLocations);
-  messageLocations.style.display= "block";
-  messageLocations.innerHTML = "Veuillez renseigner un tournoi auquel participer.";
-}
-function errorConditionsAdd() {
-  document.getElementById("conditions").parentElement.appendChild(messageConditions);
-  messageConditions.style.display= "block";
-  messageConditions.innerHTML = "Veuillez accepter les conditions d'utilisation.";
-}
+// Ajoute l'erreur
+function addError(element, message) {
+  element.parentElement.setAttribute('data-error-visible', 'true');
+  element.parentElement.setAttribute('data-error', message);
+  if(first || last || email || birthdate || quantity) {
+    element.style.border ="2.5px solid #e54858";
+  }
+};
 
-// Enlever les messages d'erreur
-function errorFirstRemove() {
-  first.style.border ="none"
-  messageFirst.style.display = "none";
-}
-function errorLastRemove() {
-  last.style.border ="none"
-  messageLast.style.display = "none";
-}
-function errorEmailRemove() {
-  email.style.border ="none"
-  messageEmail.style.display = "none";
-}
-function errorBirthdateRemove() {
-  birthdate.style.border ="none"
-  messageBirthdate.style.display = "none";
-}
-function errorQuantityRemove() {
-  quantity.style.border ="none"
-  messageQuantity.style.display = "none";
-}
+// Enlève l'erreur
+function removeError(element) {
+  element.parentElement.removeAttribute('data-error-visible');
+  element.parentElement.removeAttribute('data-error');
+  if(first || last || email || birthdate || quantity) {
+    element.style.border ="none";
+  }
+};
 
-// Fonction de validation des inputs du formulaires //
-function firstValid() {
+// Vérifie first
+function checkFirst(first, message) {
   if (first.value.length < 2) {
-    ErrorFirstAdd();
-    messageFirst.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
+    addError(first, message.name);
     return false;
   }
   if(!first.value.match(regexName)) {
-    ErrorFirstAdd();
-    messageFirst.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux";
+    addError(first, message.name2);
     return false;
-  }
-  else {
-    errorFirstRemove();
+  } else {
+    removeError(first);
   }
   return true;
 };
 
-function lastValid() {
-  if(last.value.length < 2) {
-    errorLastAdd();
-    messageLast.innerHTML = "Ce champ doit contenir minimum 2 caractères.";
+// Vérifie last
+function checkLast(last, message) {
+  if (last.value.length < 2) {
+    addError(last, message.name);
     return false;
   }
   if(!last.value.match(regexName)) {
-    errorLastAdd();
-    messageLast.innerHTML = "Ce champ ne doit pas contenir de caractères spéciaux.";
+    addError(last, message.name2);
     return false;
-}
-  else {
-    errorLastRemove();
+  } else {
+    removeError(last);
   }
   return true;
 };
 
-function emailValid() {
+// Vérifie email
+function checkEmail(email, message) {
   if(!email.value) {
-    errorEmailAdd()
-    messageEmail.innerHTML = "Veuillez renseigner une adresse email.";
+    addError(email, message.email);
     return false;
   }
   if(!email.value.match(regexEmail)) {
-    errorEmailAdd();
-    messageEmail.innerHTML = "Veuillez renseigner une adresse email valide.";
+    addError(email, message.email2);
     return false;
-  }
-  else {
-    errorEmailRemove();
+  } else {
+    removeError(email);
   }
   return true;
 }
 
-function birthdateValid() {
-  //Récupérer la date de naissance de l'utilsiateur
+// Vérifie birthdate
+function checkBirthdate(birthdate, message) {
+
   const birthdateValue = new Date(birthdate.value);
-  //Récupérer la date actuelle
   const currentDate = new Date();
-  //Calculez la différence entre la date actuelle et la date de naissance
+ 
+  //Calcule la différence entre la date actuelle et la date de naissance
   const difference_currentDate_birthdate = currentDate - birthdateValue;
-  // Convertissez la différence en années                    // nombre de millisecondes dans une année
+  // Convertissez la différence en années                     // nombre de millisecondes dans une année
   const differenceInYears = difference_currentDate_birthdate / (1000 * 60 * 60 * 24 * 365); 
-  // 4. Vérifiez si l'utilisateur a plus de 18 ans
+ 
   if (differenceInYears < 18) {
-    errorBirthdateAdd();
-    messageBirthdate.innerHTML = "Vous devez avoir plus de 18 ans pour participer.";
+    addError(birthdate, message.birthdate)
     return false;
   }
   if (differenceInYears > 130) {
-    errorBirthdateAdd();
-    messageBirthdate.innerHTML = "Veullez renseigner une date de naissance valide.";
+    addError(birthdate, message.birthdate2)
     return false;
   }
   if (!differenceInYears) {
-    errorBirthdateAdd();
-    messageBirthdate.innerHTML = "Veullez renseigner une date de naissance.";
+    addError(birthdate, message.birthdate3)
     return false;
-  }
-  else {
-    errorBirthdateRemove();
+  } else {
+    removeError(birthdate);
   }
   return true;
 }
 
-function quantityValid() {
+// Vérifie quantity
+function checkQuantity(quantity, message) {
   if(!quantity.value.match(regexQuantity)) {
-    errorQuantityAdd();
+    addError(quantity, message.quantity);
     return false;
-  }
-  else {
-    errorQuantityRemove();
+  } else {
+    removeError(quantity);
   }
   return true;
+};
+
+// Vérifie locations
+function checkLocations(locations, message) {
+  let isChecked =  [...locations].some((location) => location.checked );
+  if (!isChecked) {
+    addError(locations[0], message.locations);
+  } else {
+    for (let location of locations) {
+      removeError(location);
+    }
+  }
+  return isChecked;
 }
 
-function locationValid() {
-  if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {
-    errorLocationAdd();
-    return false;
-  }
-  else {
-    messageLocations.style.display = "none";
-  }
-  return true;
-};
-
-function conditionsValid() {
+// Vérifie conditions
+function checkConditions(conditions, message) {
   if(!conditions.checked) {
-    errorConditionsAdd();
+    addError(conditions, message.conditions);
     return false;
-  }
-  else {
-    messageConditions.style.display = "none";
+  } else {
+    removeError(conditions);
   }
   return true;
 };
 
-// Evenement des inputs du formulaires
-first.addEventListener('change', () => {
-  firstValid();
-});
-last.addEventListener('change', () => {
-  lastValid();
-});
-email.addEventListener('change', () => {
-  emailValid();
-});
-birthdate.addEventListener('change', () => {
-  birthdateValid();
-});
-quantity.addEventListener('change', () => {
-  quantityValid();
-});
-locations.addEventListener('change', () => {
-  locationValid(); 
-});
-conditions.addEventListener('change', () => {
-  conditionsValid()
-});
+// Ajoute un évenement aux inputs du formulaire
+first.addEventListener('change', () => {checkFirst(first, message)});
+last.addEventListener('change', () => {checkLast(last, message)});
+email.addEventListener('change', () => {checkEmail(email, message)});
+birthdate.addEventListener('change', () => {checkBirthdate(birthdate, message)});
+quantity.addEventListener('change', () => {checkQuantity(quantity, message)});
+for (let location of locations) {location.addEventListener('change', () => {checkLocations(locations, message)});}
+conditions.addEventListener('change', () => {checkConditions(conditions, message)});
 
-// Evenement au submit du formulaire
+// Ajoute un évenement au submit du formulaire
 form.addEventListener("submit", (event) => {
-  // On empêche le comportement par défaut
   event.preventDefault();
 
-  firstValid();
-  lastValid();
-  emailValid();
-  birthdateValid();
-  quantityValid();
-  locationValid();
-  conditionsValid();
+  const isCheckedFirst = checkFirst(first, message);
+  const isCheckLast = checkLast(last, message);
+  const isCheckedEmail = checkEmail(email, message);
+  const isCheckBirthdate = checkBirthdate(birthdate, message);
+  const isCheckQuantity = checkQuantity(quantity, message);
+  const isCheckLocations = checkLocations(locations, message);
+  const isCheckConditions = checkConditions(conditions, message);
 
-  // Si tous les champs du formulaires sont valide
-  if (firstValid() && lastValid() && emailValid() && birthdateValid() && quantityValid() && locationValid() && conditionsValid()) {
+  if (isCheckedFirst && isCheckLast && isCheckedEmail && isCheckBirthdate && isCheckQuantity && isCheckLocations && isCheckConditions ) {
     messageValidation.style.display = 'block';
     form.style.display = "none";
-    // Réinitiliser les champs du formulaires
     form.reset();
-  }  
+  }
 });
