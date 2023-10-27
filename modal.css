@@ -219,6 +219,9 @@ input {
   font-size: 20px;
   height: 48px;
 }
+.formData {
+  margin-bottom: 10px;
+}
 
 .formData[data-error]::after {
   content: attr(data-error);
@@ -234,6 +237,10 @@ input {
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;
+  text-align: left;
+  font-size: 16px;
+  padding: 5px 0 10px;
+  font-weight: 400;
 }
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
@@ -614,7 +621,6 @@ footer {
     top: 0%;
     background-color: #ffffff;
     color: #060606;
-    /*margin: 3.5% 0;*/
     transition: 0.5s ease-in-out;
     display: none;
   }
@@ -630,9 +636,6 @@ footer {
   .navbar-close  {
     display: block;
   }
-  /*.content {
-    height: 100%;
-  }*/
 }
 
  @media screen and (max-width: 540px) {
@@ -647,48 +650,5 @@ footer {
     font-size: 16px;
   }
 } 
-
-
-/*
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-*/
-/*
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-*/
-/*
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
-*/
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
 
 
