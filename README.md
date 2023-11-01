@@ -1,4 +1,4 @@
-# [GameOn](https://matteobruccoleri.github.io/GameOn-website-FR/) 👀
+# [GameOn](https://matteobruccoleri.github.io/GameOn/) 👀
 Projet 4 de la formation OpenClassRooms développeur d'application Javascript React !
 
 ### 1 - TODO : fermer la modale
