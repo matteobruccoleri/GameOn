@@ -1,5 +1,5 @@
 # [GameOn](https://matteobruccoleri.github.io/GameOn/) 👀
-Projet 4 de la formation OpenClassRooms développeur d'application Javascript React !
+Projet 4 de la formation OpenClassRooms développeur d'application Javascript React.
 
 ### 1 - TODO : fermer la modale
 *  Ajouter la fonctionnalité au bouton (x)
